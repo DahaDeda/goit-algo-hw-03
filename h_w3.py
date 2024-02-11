@@ -7,7 +7,7 @@ def get_days_from_today(date):
         date = dtdt.strptime(date, "%Y-%m-%d") #переводимо стрінгу  в дату
         x_now = dtdt.now()
         days_since = x_now.toordinal() - date.toordinal()
-        print(days_since)
+        return days_since
     except ValueError:
         print("Needs Year-Month-Day")
 get_days_from_today(date_input)
@@ -16,15 +16,15 @@ get_days_from_today(date_input)
 import random
 def get_numbers_tickets(min, max, quanity):
     try:
-        list = []
+        rand_list = []
         
         if min >= 1 and max <=1000 and min < max and max - min > quanity:
-            while len(list) < quanity:
+            while len(rand_list) < quanity:
                 rand_elements_un = random.randint(min, max)
-                if rand_elements_un not in list:
-                    list.append(rand_elements_un)
-            list.sort()
-            print(list)
+                if rand_elements_un not in rand_list:
+                    rand_list.append(rand_elements_un)
+            rand_list.sort()
+            print(rand_list)
         else:
             print("Shit, more than 1 and less than 1000 and min > max")
     except ValueError:
@@ -93,10 +93,10 @@ def get_upcoming_birthdays(users_birth=None):
                 bdays.append({'name':user['name'], 'birthday':bdate.isoformat().replace('-','.')[:10]}) 
             else:
                 if dtdt.fromordinal(bdo+1).weekday()==0:
-                    bdays.append({'name':user['name'], 'birthday':dtdt.fromordinal(bdo+1).isoformat().replace('-','.')[:10]})
-
+                    bdays.strftime("%d-%m-%Y")
+                    
                 elif dtdt.fromordinal(bdo+2).weekday()==0:
-                    bdays.append({'name':user['name'], 'birthday':dtdt.fromordinal(bdo+2).isoformat().replace('-','.')[:10]})
+                    bdays.strftime("%d-%m-%Y")
                     
     return bdays
 
